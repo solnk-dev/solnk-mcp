@@ -1,0 +1,14 @@
+name = "solnk-mcp"
+main = "src/index.ts"
+compatibility_date = "2025-06-12"
+compatibility_flags = ["nodejs_compat"]
+
+# Bind mcp.solnk.com to this Worker (zone must be in this Cloudflare account).
+# Must stay ABOVE [vars] — TOML would otherwise scope `routes` into the vars table.
+routes = [
+  { pattern = "mcp.solnk.com", custom_domain = true }
+]
+
+[vars]
+# Public Solnk API the MCP tools proxy to. Override to http://localhost:3002/api/v1 in dev.
+SOLNK_API_BASE = "https://api.solnk.com/api/v1"

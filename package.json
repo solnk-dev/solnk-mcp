@@ -1,0 +1,37 @@
+{
+  "name": "solnk-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Solnk — publish and schedule content to X, Instagram, TikTok, YouTube, Facebook, LinkedIn, Pinterest, Threads, and Bluesky from any MCP client.",
+  "license": "MIT",
+  "homepage": "https://solnk.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solnk-dev/solnk-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/solnk-dev/solnk-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "solnk",
+    "social-media",
+    "cloudflare-workers"
+  ],
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "agents": "^0.13.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250620.0",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.22.0"
+  }
+}
