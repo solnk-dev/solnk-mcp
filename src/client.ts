@@ -19,6 +19,16 @@ export async function callApi(
   body?: unknown,
   extraHeaders?: Record<string, string>,
 ): Promise<ApiResult> {
+  // Discovery is allowed without a key (see index.ts), but any actual API call needs one.
+  if (!ctx.apiKey) {
+    return {
+      ok: false,
+      status: 401,
+      message:
+        "Missing Solnk API key. Configure your MCP client to send 'Authorization: Bearer sk_...' — create one at https://solnk.com/settings/api-keys.",
+    };
+  }
+
   const headers: Record<string, string> = {
     Authorization: `Bearer ${ctx.apiKey}`,
     Accept: "application/json",

@@ -24,13 +24,12 @@ export default {
     }
 
     if (url.pathname === MCP_ROUTE) {
+      // Discovery (initialize / tools/list) is intentionally open so MCP clients
+      // and directories can introspect the tool surface without a key. The key is
+      // only required to actually invoke a tool — enforced per-call in callApi(),
+      // which returns a clean 401-style error when it's absent. The tool schemas
+      // are public (open-source), so listing them unauthenticated leaks nothing.
       const apiKey = (request.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "").trim();
-      if (!apiKey) {
-        return json(
-          { error: "Missing Solnk API key. Configure your MCP client to send 'Authorization: Bearer sk_...'." },
-          401,
-        );
-      }
       // Stateless: a fresh server per request (MCP SDK guidance), key captured in tool closures.
       const server = new McpServer({ name: "solnk", version: "1.0.0" });
       registerTools(server, { apiKey, base: env.SOLNK_API_BASE });

@@ -84,6 +84,10 @@ pnpm deploy
 
 No secrets are needed at deploy time; the API key is supplied by the client at request time.
 
+### Discovery without a key
+
+MCP discovery (`initialize` / `tools/list`) is open — clients, inspectors, and directories can introspect the tool surface without an API key. A key is only required to actually invoke a publishing tool. A `Dockerfile` is included so the Worker can be built and run locally (`wrangler dev`, no Cloudflare login) for introspection.
+
 ## License
 
 [MIT](./LICENSE) © Solnk
